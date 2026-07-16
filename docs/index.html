@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex">
+  <title>Calendario Protezione Civile — Stato sviluppi</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%92%3C/text%3E%3C/svg%3E">
+  <style>
+    :root {
+      --blue:      #1A4FAB;
+      --blue-mid:  #2563C9;
+      --blue-light:#EAF1FC;
+      --yellow:    #F5C518;
+      --ink:       #1c2431;
+      --muted:     #5b6675;
+      --bg:        #f6f8fc;
+      --card:      #ffffff;
+      --border:    #e3e9f2;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --blue-light:#16233c;
+        --ink:       #e8edf5;
+        --muted:     #9aa7ba;
+        --bg:        #0f1522;
+        --card:      #161e2e;
+        --border:    #263148;
+      }
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.55;
+    }
+    .wrap { max-width: 780px; margin: 0 auto; padding: 24px 20px 64px; }
+
+    header {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
+      color: #fff;
+      border-radius: 18px;
+      padding: 28px 26px;
+      box-shadow: 0 6px 24px rgba(26,79,171,.22);
+    }
+    header h1 { margin: 0 0 6px; font-size: 1.5rem; line-height: 1.25; }
+    header p  { margin: 0; opacity: .92; font-size: .95rem; }
+    .badges { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      background: rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.28);
+      padding: 5px 11px; border-radius: 999px;
+      font-size: .82rem; font-weight: 600;
+    }
+    .badge b { color: var(--yellow); }
+
+    .links { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 8px; }
+    .link-card {
+      flex: 1 1 240px;
+      display: block; text-decoration: none; color: inherit;
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 14px; padding: 14px 16px;
+      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    }
+    .link-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.08); border-color: var(--blue-mid); }
+    .link-card .lc-title { font-weight: 700; font-size: 1rem; }
+    .link-card .lc-sub   { color: var(--muted); font-size: .84rem; margin-top: 2px; }
+
+    h2 {
+      font-size: 1.05rem; margin: 34px 0 4px;
+      padding-bottom: 8px; border-bottom: 2px solid var(--border);
+    }
+    .section-note { color: var(--muted); font-size: .86rem; margin: 0 0 12px; }
+
+    .release { margin: 18px 0; }
+    .release-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .ver {
+      font-weight: 800; font-size: 1rem; color: var(--blue);
+      background: var(--blue-light); padding: 2px 10px; border-radius: 8px;
+    }
+    @media (prefers-color-scheme: dark) { .ver { color: #9ec2ff; } }
+    .rel-date { color: var(--muted); font-size: .84rem; }
+    .release ul { margin: 8px 0 0; padding-left: 20px; }
+    .release li { margin: 4px 0; }
+    .tag {
+      font-size: .68rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: .03em; padding: 1px 7px; border-radius: 6px; margin-left: 6px;
+      vertical-align: middle;
+    }
+    .tag-new { background: #e6f6ec; color: #1a7f43; }
+    .tag-fix { background: #fdeecf; color: #92651a; }
+    @media (prefers-color-scheme: dark) {
+      .tag-new { background: #16341f; color: #7fe0a3; }
+      .tag-fix { background: #3a2c12; color: #f2c874; }
+    }
+
+    footer {
+      margin-top: 40px; text-align: center;
+      color: var(--muted); font-size: .82rem;
+    }
+    footer .tag-line { font-size: 1rem; margin-bottom: 4px; }
+    code { background: var(--blue-light); padding: 1px 6px; border-radius: 5px; font-size: .85em; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>🚒 Calendario Protezione Civile<br>Occhiobello &amp; Stienta</h1>
+      <p>Stato degli sviluppi e cronologia delle versioni</p>
+      <div class="badges">
+        <span class="badge">Versione attuale <b>v22.0.0</b></span>
+        <span class="badge">Aggiornato: 17/07/2026</span>
+      </div>
+    </header>
+
+    <div class="links">
+      <a class="link-card" href="https://protezione-civile-occhiobello-stienta.github.io/calendario/">
+        <div class="lc-title">📅 Apri il calendario</div>
+        <div class="lc-sub">Vista volontari (sola lettura, iscrizioni)</div>
+      </a>
+      <a class="link-card" href="https://protezione-civile-occhiobello-stienta.github.io/calendario/admin/">
+        <div class="lc-title">🔑 Area amministratore</div>
+        <div class="lc-sub">Gestione eventi — richiede password</div>
+      </a>
+    </div>
+
+    <h2>Cronologia versioni</h2>
+    <p class="section-note">Dalla versione <code>v22.0.0</code> il numero segue lo standard
+      <em>Semantic Versioning</em> (<code>vMAJOR.MINOR.PATCH</code>): correzioni → ultima cifra,
+      nuove funzioni → cifra centrale, cambiamenti importanti → prima cifra.</p>
+
+    <div class="release">
+      <div class="release-head">
+        <span class="ver">v22.0.0</span>
+        <span class="rel-date">luglio 2026 — versione attuale</span>
+      </div>
+      <ul>
+        <li>Scadenza iscrizioni <b>precompilata in automatico</b> a 2 giorni prima della fine
+          dell'evento, comunque modificabile a mano <span class="tag tag-new">nuovo</span></li>
+        <li>Nuovo tipo di evento: <b>“Servizio antincendio + Servizio Safety &amp; Security”</b>
+          <span class="tag tag-new">nuovo</span></li>
+        <li>Tasto <b>“Copia partecipanti”</b> nell'elenco risposte: copia i nominativi dei soli
+          partecipanti, pronti da incollare (es. in Google Keep) <span class="tag tag-new">nuovo</span></li>
+        <li>In caso di <b>doppia iscrizione</b> allo stesso evento viene chiesto se sovrascrivere
+          la scelta precedente <span class="tag tag-new">nuovo</span></li>
+        <li>Accesso amministratore: password richiesta <b>una sola volta per dispositivo</b></li>
+        <li><b>“Visualizza risposte”</b> per ogni evento, con contatore di chi partecipa e chi no</li>
+        <li>Correzioni di robustezza su colori delle categorie e formattazioni <span class="tag tag-fix">fix</span></li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <div class="release-head">
+        <span class="ver">v21</span>
+        <span class="rel-date">giugno 2026</span>
+      </div>
+      <ul>
+        <li>Correzione della formattazione di date e giorni nel registro delle adesioni
+          <span class="tag tag-fix">fix</span></li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <div class="release-head">
+        <span class="ver">v20</span>
+        <span class="rel-date">giugno 2026</span>
+      </div>
+      <ul>
+        <li>Sulla card dell'evento due scelte affiancate: <b>“Partecipo”</b> e
+          <b>“Non partecipo”</b> <span class="tag tag-new">nuovo</span></li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <div class="release-head">
+        <span class="ver">v19</span>
+        <span class="rel-date">maggio 2026</span>
+      </div>
+      <ul>
+        <li>13 categorie di evento con colori dedicati e legenda a pallini</li>
+        <li>Accesso amministratore protetto da password</li>
+        <li>Link stabili pubblicati su GitHub Pages (per volontari e amministratore)</li>
+      </ul>
+    </div>
+
+    <div class="release">
+      <div class="release-head">
+        <span class="ver">precedenti</span>
+        <span class="rel-date">maggio 2026</span>
+      </div>
+      <ul>
+        <li><b>Privacy:</b> l'elenco degli aderenti non è più visibile ai volontari</li>
+        <li>Campo scadenza semplificato (solo data)</li>
+        <li>Tracciamento della durata dell'evento in ore</li>
+      </ul>
+    </div>
+
+    <footer>
+      <div class="tag-line">Made with&nbsp;🟡🔵&nbsp;near the Po River</div>
+      <div>Protezione Civile ODV — Occhiobello e Stienta · Provincia di Rovigo</div>
+    </footer>
+  </div>
+</body>
+</html>
