@@ -4,204 +4,658 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex">
-  <title>Calendario Protezione Civile — Stato sviluppi</title>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9A%92%3C/text%3E%3C/svg%3E">
+  <title>Guida al Calendario · Protezione Civile Occhiobello e Stienta</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E%F0%9F%9B%A1%EF%B8%8F%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --blue:      #1A4FAB;
-      --blue-mid:  #2563C9;
-      --blue-light:#EAF1FC;
-      --yellow:    #F5C518;
-      --ink:       #1c2431;
-      --muted:     #5b6675;
-      --bg:        #f6f8fc;
-      --card:      #ffffff;
-      --border:    #e3e9f2;
+      --blue:        #1A4FAB;
+      --blue-deep:   #0F317A;
+      --blue-bright: #2C6BE0;
+      --hi-vis:      #F5C518;
+      --hi-vis-deep: #D9A800;
+      --ink:         #14202f;
+      --muted:       #5a6879;
+      --paper:       #eef3fa;
+      --card:        #ffffff;
+      --border:      #dde6f2;
+      --shadow:      0 4px 18px rgba(15,49,122,.10);
+      --radius:      15px;
+      --display: "Archivo", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      --body: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     }
     @media (prefers-color-scheme: dark) {
       :root {
-        --blue-light:#16233c;
-        --ink:       #e8edf5;
-        --muted:     #9aa7ba;
-        --bg:        #0f1522;
-        --card:      #161e2e;
-        --border:    #263148;
+        --blue:        #4d84e6;
+        --blue-deep:   #0b1f4d;
+        --blue-bright: #6aa0ff;
+        --ink:         #e7edf6;
+        --muted:       #9fadc0;
+        --paper:       #0c121e;
+        --card:        #141d2c;
+        --border:      #26324a;
+        --shadow:      0 4px 20px rgba(0,0,0,.45);
       }
     }
     * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
     body {
-      margin: 0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      color: var(--ink);
-      background: var(--bg);
-      line-height: 1.55;
+      margin: 0; background: var(--paper); color: var(--ink);
+      font-family: var(--body); line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
     }
-    .wrap { max-width: 780px; margin: 0 auto; padding: 24px 20px 64px; }
+    .skip-link {
+      position: absolute; left: -999px; top: 0; z-index: 100;
+      background: var(--hi-vis); color: #000; padding: 10px 16px; font-weight: 700; border-radius: 0 0 8px 0;
+    }
+    .skip-link:focus { left: 0; }
+    a { color: var(--blue-bright); }
+    :focus-visible { outline: 3px solid var(--hi-vis); outline-offset: 2px; border-radius: 4px; }
 
-    header {
-      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-mid) 100%);
-      color: #fff;
-      border-radius: 18px;
-      padding: 28px 26px;
-      box-shadow: 0 6px 24px rgba(26,79,171,.22);
+    /* ===== HERO ===== */
+    .hero {
+      background: linear-gradient(160deg, var(--blue-deep) 0%, var(--blue) 100%);
+      color: #fff; padding: 40px 20px 0; position: relative; overflow: hidden;
     }
-    header h1 { margin: 0 0 6px; font-size: 1.5rem; line-height: 1.25; }
-    header p  { margin: 0; opacity: .92; font-size: .95rem; }
-    .badges { margin-top: 16px; display: flex; flex-wrap: wrap; gap: 8px; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      background: rgba(255,255,255,.16);
-      border: 1px solid rgba(255,255,255,.28);
-      padding: 5px 11px; border-radius: 999px;
-      font-size: .82rem; font-weight: 600;
+    .hero-inner { max-width: 900px; margin: 0 auto; }
+    .eyebrow {
+      font-family: var(--display); font-weight: 700; text-transform: uppercase;
+      letter-spacing: .16em; font-size: .72rem; color: var(--hi-vis);
+      display: inline-flex; align-items: center; gap: 8px; margin-bottom: 14px;
     }
-    .badge b { color: var(--yellow); }
+    .eyebrow::before { content: ""; width: 26px; height: 3px; background: var(--hi-vis); display: inline-block; }
+    .hero h1 {
+      font-family: var(--display); font-weight: 800; letter-spacing: -.02em;
+      font-size: clamp(1.8rem, 6vw, 3rem); line-height: 1.04; margin: 0 0 14px;
+    }
+    .hero .lede { font-size: clamp(1rem, 2.6vw, 1.18rem); max-width: 40ch; opacity: .94; margin: 0 0 22px; }
+    .role-jump { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 34px; }
+    .role-jump a {
+      text-decoration: none; color: #fff; font-weight: 700; font-family: var(--display);
+      background: rgba(255,255,255,.10); border: 1.5px solid rgba(255,255,255,.30);
+      padding: 11px 18px; border-radius: 999px; font-size: .95rem;
+      transition: background .15s, transform .15s;
+    }
+    .role-jump a:hover { background: rgba(255,255,255,.20); transform: translateY(-2px); }
+    /* firma: banda hi-vis rifrangente (livrea Protezione Civile) */
+    .hi-vis-band {
+      height: 12px;
+      background: repeating-linear-gradient(-45deg, var(--hi-vis) 0 16px, var(--hi-vis-deep) 16px 32px);
+    }
 
-    .links { display: flex; flex-wrap: wrap; gap: 12px; margin: 22px 0 8px; }
-    .link-card {
-      flex: 1 1 240px;
-      display: block; text-decoration: none; color: inherit;
-      background: var(--card); border: 1px solid var(--border);
-      border-radius: 14px; padding: 14px 16px;
-      transition: transform .12s ease, box-shadow .12s ease, border-color .12s ease;
+    /* ===== CONTROLS (sticky search) ===== */
+    .controls {
+      position: sticky; top: 0; z-index: 20;
+      background: color-mix(in srgb, var(--paper) 88%, transparent);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 20px;
     }
-    .link-card:hover { transform: translateY(-2px); box-shadow: 0 6px 18px rgba(0,0,0,.08); border-color: var(--blue-mid); }
-    .link-card .lc-title { font-weight: 700; font-size: 1rem; }
-    .link-card .lc-sub   { color: var(--muted); font-size: .84rem; margin-top: 2px; }
+    .controls-inner { max-width: 900px; margin: 0 auto; display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+    .search-box { position: relative; flex: 1 1 260px; }
+    .search-box .mag { position: absolute; left: 14px; top: 50%; transform: translateY(-50%); font-size: 1.05rem; pointer-events: none; opacity: .6; }
+    #search {
+      width: 100%; font: inherit; font-size: 1rem; color: var(--ink);
+      padding: 12px 40px 12px 42px; border-radius: 12px;
+      border: 2px solid var(--border); background: var(--card);
+      transition: border-color .15s;
+    }
+    #search:focus { border-color: var(--blue-bright); outline: none; }
+    #search-clear {
+      position: absolute; right: 8px; top: 50%; transform: translateY(-50%);
+      border: none; background: transparent; font-size: 1.2rem; cursor: pointer; color: var(--muted);
+      width: 30px; height: 30px; border-radius: 50%; display: none;
+    }
+    #search-clear:hover { background: var(--border); }
+    .filters { display: flex; gap: 6px; flex-wrap: wrap; }
+    .chip {
+      font-family: var(--display); font-weight: 600; font-size: .86rem; cursor: pointer;
+      background: var(--card); color: var(--muted); border: 1.5px solid var(--border);
+      padding: 9px 14px; border-radius: 999px; transition: all .15s;
+    }
+    .chip:hover { border-color: var(--blue-bright); color: var(--ink); }
+    .chip[aria-pressed="true"] { background: var(--blue); color: #fff; border-color: var(--blue); }
+    .result-count { width: 100%; font-size: .82rem; color: var(--muted); }
+    .result-count b { color: var(--ink); }
 
-    h2 {
-      font-size: 1.05rem; margin: 34px 0 4px;
-      padding-bottom: 8px; border-bottom: 2px solid var(--border);
+    /* ===== MAIN ===== */
+    main { max-width: 900px; margin: 0 auto; padding: 8px 20px 60px; }
+    .group-head {
+      display: flex; align-items: center; gap: 12px; margin: 40px 0 6px; padding-top: 8px;
     }
-    .section-note { color: var(--muted); font-size: .86rem; margin: 0 0 12px; }
+    .group-head .gh-icon {
+      font-size: 1.5rem; width: 46px; height: 46px; flex: none;
+      display: grid; place-items: center; border-radius: 12px;
+      background: var(--card); border: 1.5px solid var(--border); box-shadow: var(--shadow);
+    }
+    .group-head h2 { font-family: var(--display); font-weight: 800; font-size: 1.35rem; margin: 0; letter-spacing: -.01em; }
+    .group-head p { margin: 2px 0 0; color: var(--muted); font-size: .9rem; }
 
-    .release { margin: 18px 0; }
-    .release-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-    .ver {
-      font-weight: 800; font-size: 1rem; color: var(--blue);
-      background: var(--blue-light); padding: 2px 10px; border-radius: 8px;
+    .feature {
+      background: var(--card); border: 1.5px solid var(--border); border-radius: var(--radius);
+      margin: 12px 0; box-shadow: var(--shadow); overflow: hidden;
+      transition: border-color .15s;
     }
-    @media (prefers-color-scheme: dark) { .ver { color: #9ec2ff; } }
+    .feature[open] { border-color: var(--blue-bright); }
+    .feature > summary {
+      list-style: none; cursor: pointer; padding: 16px 18px;
+      display: flex; align-items: flex-start; gap: 14px;
+    }
+    .feature > summary::-webkit-details-marker { display: none; }
+    .feature .f-emoji { font-size: 1.4rem; line-height: 1.5; flex: none; }
+    .feature .f-txt { flex: 1; min-width: 0; }
+    .feature .f-title { display: block; font-family: var(--display); font-weight: 700; font-size: 1.06rem; line-height: 1.3; }
+    .feature .f-sub { display: block; color: var(--muted); font-size: .9rem; margin-top: 3px; }
+    .feature .f-caret { flex: none; color: var(--muted); transition: transform .2s; margin-top: 4px; }
+    .feature[open] .f-caret { transform: rotate(90deg); }
+    .f-body { padding: 0 18px 18px 46px; }
+    .f-body p { margin: 0 0 10px; }
+    .f-body ol, .f-body ul { margin: 6px 0 12px; padding-left: 20px; }
+    .f-body li { margin: 5px 0; }
+    .f-body li::marker { color: var(--blue-bright); font-weight: 700; }
+    .tagbadge {
+      display: inline-block; font-family: var(--display); font-size: .68rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: .04em; padding: 2px 8px; border-radius: 6px;
+      background: color-mix(in srgb, var(--hi-vis) 30%, var(--card)); color: var(--hi-vis-deep);
+      vertical-align: middle; margin-left: 6px;
+    }
+    mark { background: var(--hi-vis); color: #000; border-radius: 3px; padding: 0 2px; }
+
+    .no-results { text-align: center; color: var(--muted); padding: 40px 20px; display: none; }
+    .no-results strong { color: var(--ink); display: block; font-size: 1.1rem; margin-bottom: 4px; font-family: var(--display); }
+
+    /* ===== CHANGELOG ===== */
+    .changelog { margin-top: 20px; }
+    .timeline { border-left: 2px solid var(--border); margin-left: 8px; padding-left: 22px; }
+    .rel { position: relative; margin: 22px 0; }
+    .rel::before {
+      content: ""; position: absolute; left: -30px; top: 4px; width: 14px; height: 14px;
+      border-radius: 50%; background: var(--card); border: 3px solid var(--blue-bright);
+    }
+    .rel.current::before { background: var(--hi-vis); border-color: var(--hi-vis-deep); }
+    .rel-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
+    .rel-ver { font-family: var(--display); font-weight: 800; color: var(--blue); }
     .rel-date { color: var(--muted); font-size: .84rem; }
-    .release ul { margin: 8px 0 0; padding-left: 20px; }
-    .release li { margin: 4px 0; }
-    .tag {
-      font-size: .68rem; font-weight: 700; text-transform: uppercase;
-      letter-spacing: .03em; padding: 1px 7px; border-radius: 6px; margin-left: 6px;
-      vertical-align: middle;
-    }
-    .tag-new { background: #e6f6ec; color: #1a7f43; }
-    .tag-fix { background: #fdeecf; color: #92651a; }
-    @media (prefers-color-scheme: dark) {
-      .tag-new { background: #16341f; color: #7fe0a3; }
-      .tag-fix { background: #3a2c12; color: #f2c874; }
-    }
+    .rel ul { margin: 6px 0 0; padding-left: 18px; }
+    .rel li { margin: 3px 0; }
 
-    footer {
-      margin-top: 40px; text-align: center;
-      color: var(--muted); font-size: .82rem;
+    /* ===== FOOTER ===== */
+    footer { text-align: center; color: var(--muted); font-size: .84rem; padding: 30px 20px 50px; }
+    footer .tl { font-size: 1.05rem; margin-bottom: 4px; }
+    footer a { display: inline-block; margin-top: 12px; font-weight: 600; }
+
+    @media (max-width: 560px) {
+      .f-body { padding-left: 18px; }
+      .controls { padding: 12px 14px; }
     }
-    footer .tag-line { font-size: 1rem; margin-bottom: 4px; }
-    code { background: var(--blue-light); padding: 1px 6px; border-radius: 5px; font-size: .85em; }
   </style>
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>🚒 Calendario Protezione Civile<br>Occhiobello &amp; Stienta</h1>
-      <p>Stato degli sviluppi e cronologia delle versioni</p>
-      <div class="badges">
-        <span class="badge">Versione attuale <b>v22.0.0</b></span>
-        <span class="badge">Aggiornato: 17/07/2026</span>
-      </div>
-    </header>
+  <a href="#guida" class="skip-link">Salta alla guida</a>
 
-    <div class="links">
-      <a class="link-card" href="https://protezione-civile-occhiobello-stienta.github.io/calendario/">
-        <div class="lc-title">📅 Apri il calendario</div>
-        <div class="lc-sub">Vista volontari (sola lettura, iscrizioni)</div>
-      </a>
-      <a class="link-card" href="https://protezione-civile-occhiobello-stienta.github.io/calendario/admin/">
-        <div class="lc-title">🔑 Area amministratore</div>
-        <div class="lc-sub">Gestione eventi — richiede password</div>
-      </a>
+  <header class="hero">
+    <div class="hero-inner">
+      <span class="eyebrow">Guida all'app · v22.0.0</span>
+      <h1>Il calendario, spiegato una volta per tutte.</h1>
+      <p class="lede">Tutto quello che l'app sa fare — per i volontari e per chi la gestisce.
+        Cerca una funzione o scorri la guida: non serve che nessuno te la spieghi.</p>
+      <nav class="role-jump" aria-label="Vai alla sezione">
+        <a href="#volontari">🙋 Sono un volontario</a>
+        <a href="#amministratori">🛡️ Sono un amministratore</a>
+        <a href="#novita">✨ Cosa c'è di nuovo</a>
+      </nav>
     </div>
+  </header>
+  <div class="hi-vis-band" aria-hidden="true"></div>
 
-    <h2>Cronologia versioni</h2>
-    <p class="section-note">Dalla versione <code>v22.0.0</code> il numero segue lo standard
-      <em>Semantic Versioning</em> (<code>vMAJOR.MINOR.PATCH</code>): correzioni → ultima cifra,
-      nuove funzioni → cifra centrale, cambiamenti importanti → prima cifra.</p>
-
-    <div class="release">
-      <div class="release-head">
-        <span class="ver">v22.0.0</span>
-        <span class="rel-date">luglio 2026 — versione attuale</span>
+  <div class="controls">
+    <div class="controls-inner">
+      <div class="search-box">
+        <span class="mag" aria-hidden="true">🔎</span>
+        <input id="search" type="search" placeholder="Cerca una funzione… (es. iscriversi, ICS, risposte)"
+               aria-label="Cerca tra le funzioni" autocomplete="off">
+        <button id="search-clear" type="button" aria-label="Cancella ricerca">✕</button>
       </div>
-      <ul>
-        <li>Scadenza iscrizioni <b>precompilata in automatico</b> a 2 giorni prima della fine
-          dell'evento, comunque modificabile a mano <span class="tag tag-new">nuovo</span></li>
-        <li>Nuovo tipo di evento: <b>“Servizio antincendio + Servizio Safety &amp; Security”</b>
-          <span class="tag tag-new">nuovo</span></li>
-        <li>Tasto <b>“Copia partecipanti”</b> nell'elenco risposte: copia i nominativi dei soli
-          partecipanti, pronti da incollare (es. in Google Keep) <span class="tag tag-new">nuovo</span></li>
-        <li>In caso di <b>doppia iscrizione</b> allo stesso evento viene chiesto se sovrascrivere
-          la scelta precedente <span class="tag tag-new">nuovo</span></li>
-        <li>Accesso amministratore: password richiesta <b>una sola volta per dispositivo</b></li>
-        <li><b>“Visualizza risposte”</b> per ogni evento, con contatore di chi partecipa e chi no</li>
-        <li>Correzioni di robustezza su colori delle categorie e formattazioni <span class="tag tag-fix">fix</span></li>
-      </ul>
-    </div>
-
-    <div class="release">
-      <div class="release-head">
-        <span class="ver">v21</span>
-        <span class="rel-date">giugno 2026</span>
+      <div class="filters" role="group" aria-label="Filtra per ruolo">
+        <button class="chip" data-filter="all" aria-pressed="true">Tutte</button>
+        <button class="chip" data-filter="volontari" aria-pressed="false">🙋 Volontari</button>
+        <button class="chip" data-filter="admin" aria-pressed="false">🛡️ Amministratori</button>
       </div>
-      <ul>
-        <li>Correzione della formattazione di date e giorni nel registro delle adesioni
-          <span class="tag tag-fix">fix</span></li>
-      </ul>
+      <p class="result-count" id="result-count" aria-live="polite"></p>
     </div>
-
-    <div class="release">
-      <div class="release-head">
-        <span class="ver">v20</span>
-        <span class="rel-date">giugno 2026</span>
-      </div>
-      <ul>
-        <li>Sulla card dell'evento due scelte affiancate: <b>“Partecipo”</b> e
-          <b>“Non partecipo”</b> <span class="tag tag-new">nuovo</span></li>
-      </ul>
-    </div>
-
-    <div class="release">
-      <div class="release-head">
-        <span class="ver">v19</span>
-        <span class="rel-date">maggio 2026</span>
-      </div>
-      <ul>
-        <li>13 categorie di evento con colori dedicati e legenda a pallini</li>
-        <li>Accesso amministratore protetto da password</li>
-        <li>Link stabili pubblicati su GitHub Pages (per volontari e amministratore)</li>
-      </ul>
-    </div>
-
-    <div class="release">
-      <div class="release-head">
-        <span class="ver">precedenti</span>
-        <span class="rel-date">maggio 2026</span>
-      </div>
-      <ul>
-        <li><b>Privacy:</b> l'elenco degli aderenti non è più visibile ai volontari</li>
-        <li>Campo scadenza semplificato (solo data)</li>
-        <li>Tracciamento della durata dell'evento in ore</li>
-      </ul>
-    </div>
-
-    <footer>
-      <div class="tag-line">Made with&nbsp;🟡🔵&nbsp;near the Po River</div>
-      <div>Protezione Civile ODV — Occhiobello e Stienta · Provincia di Rovigo</div>
-    </footer>
   </div>
+
+  <main id="guida">
+
+    <!-- ============ VOLONTARI ============ -->
+    <div class="group-head" id="volontari">
+      <div class="gh-icon" aria-hidden="true">🙋</div>
+      <div>
+        <h2>Per i volontari</h2>
+        <p>Consultare gli eventi, iscriversi, comunicare un'assenza.</p>
+      </div>
+    </div>
+
+    <details class="feature" data-role="volontari" open>
+      <summary>
+        <span class="f-emoji" aria-hidden="true">🗓️</span>
+        <span class="f-txt">
+          <span class="f-title">Vedere gli eventi: vista Mese o Lista</span>
+          <span class="f-sub">Due modi per sfogliare il calendario, anche da telefono.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <ul>
+          <li>In alto trovi il selettore <b>📋 Lista</b> / <b>📅 Mese</b>: la Lista mostra gli eventi in ordine, il Mese li mostra sulla griglia.</li>
+          <li>Con le frecce <b>←</b> e <b>→</b> ti sposti tra un mese e l'altro.</li>
+          <li>Ogni evento ha un <b>colore</b> in base alla categoria; la <b>legenda</b> a fondo pagina spiega i colori.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="feature" data-role="volontari">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">🔎</span>
+        <span class="f-txt">
+          <span class="f-title">Aprire un evento e leggerne i dettagli</span>
+          <span class="f-sub">Categoria, date, orari, quanti volontari servono, scadenza.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Tocca un evento per aprirne la scheda. Trovi: categoria, periodo (date), orario,
+          <b>volontari richiesti</b>, <b>scadenza iscrizioni</b> ed eventuale descrizione con
+          punto di ritrovo o materiale necessario.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="volontari">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">✋</span>
+        <span class="f-txt">
+          <span class="f-title">Iscriversi a un evento</span>
+          <span class="f-sub">Il pulsante “Partecipo”, poi nome, giorni ed email facoltativa.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <ol>
+          <li>Nella scheda dell'evento premi <b>✋ Partecipo</b>.</li>
+          <li>Inserisci <b>Nome</b> e <b>Cognome</b> (obbligatori).</li>
+          <li>L'<b>email</b> è facoltativa: se la lasci, ricevi una conferma con l'allegato
+            <b>.ICS</b> per aggiungere l'evento al tuo calendario.</li>
+          <li>Seleziona i <b>giorni di partecipazione</b> e, se vuoi, aggiungi una <b>nota</b>
+            (es. disponibilità oraria).</li>
+          <li>Premi <b>✅ Conferma iscrizione</b>.</li>
+        </ol>
+      </div>
+    </details>
+
+    <details class="feature" data-role="volontari">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">✖</span>
+        <span class="f-txt">
+          <span class="f-title">Comunicare che NON parteciperai</span>
+          <span class="f-sub">Utile agli organizzatori. Non viene inviata nessuna email.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Premi <b>✖ Non partecipo</b>: si apre lo stesso modulo, dove indichi i giorni in cui
+          <b>non potrai esserci</b>. È un aiuto per chi organizza. In questo caso <b>non ricevi
+          alcuna email</b> e non risulti tra gli iscritti.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="volontari">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">🔁</span>
+        <span class="f-txt">
+          <span class="f-title">Hai cambiato idea? Puoi sovrascrivere la scelta</span>
+          <span class="f-sub">Se rispondi due volte allo stesso evento, l'app te lo chiede.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Se compili di nuovo la partecipazione allo <b>stesso evento</b>, l'app ti riconosce
+          (nome e cognome) e ti chiede se vuoi <b>sostituire la risposta precedente</b>. Così
+          niente doppioni: vale sempre l'ultima scelta.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="volontari">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">⏰</span>
+        <span class="f-txt">
+          <span class="f-title">Scadenza delle iscrizioni</span>
+          <span class="f-sub">Dopo la data indicata non è più possibile iscriversi.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Ogni evento ha una <b>scadenza iscrizioni</b>. Superata quella data, il pulsante
+          <b>Partecipo</b> si disattiva. Conviene quindi iscriversi per tempo.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="volontari">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">📥</span>
+        <span class="f-txt">
+          <span class="f-title">Aggiungere l'evento al proprio calendario</span>
+          <span class="f-sub">Con Google Calendar o scaricando il file .ICS.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <ul>
+          <li><b>📅 Google Calendar</b>: apre l'evento già pronto da salvare nel tuo Google Calendar.</li>
+          <li><b>📥 Scarica .ICS</b>: scarica un file che aggiunge l'evento a qualsiasi calendario
+            (Apple, Outlook, ecc.).</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="feature" data-role="volontari">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">🔒</span>
+        <span class="f-txt">
+          <span class="f-title">La tua privacy</span>
+          <span class="f-sub">I volontari non vedono chi altro si è iscritto.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>L'elenco degli iscritti è visibile <b>solo agli amministratori</b>. Come volontario non
+          vedi i nomi né il numero degli altri partecipanti.</p>
+      </div>
+    </details>
+
+    <!-- ============ AMMINISTRATORI ============ -->
+    <div class="group-head" id="amministratori">
+      <div class="gh-icon" aria-hidden="true">🛡️</div>
+      <div>
+        <h2>Per gli amministratori</h2>
+        <p>Creare e gestire eventi, leggere le risposte, esportare gli aderenti.</p>
+      </div>
+    </div>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">🔑</span>
+        <span class="f-txt">
+          <span class="f-title">Accesso amministratore</span>
+          <span class="f-sub">Password richiesta una sola volta per dispositivo.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>L'area di gestione si apre dal link amministratore e chiede una <b>password</b>. Una
+          volta inserita su un dispositivo, non viene più richiesta su quello stesso dispositivo
+          (finché la password non viene cambiata).</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">➕</span>
+        <span class="f-txt">
+          <span class="f-title">Creare un evento</span>
+          <span class="f-sub">Nome, categoria, date, orari, volontari e scadenza.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Premi <b>Aggiungi evento</b> e compila: nome, <b>categoria</b>, data inizio/fine,
+          ora inizio/fine, numero di <b>volontari richiesti</b>, scadenza iscrizioni e una
+          descrizione opzionale.</p>
+        <p>La <b>scadenza iscrizioni</b> è precompilata a <b>2 giorni prima della data di fine</b>,
+          ma puoi cambiarla liberamente. <span class="tagbadge">novità</span></p>
+        <p>Puoi anche toccare un giorno vuoto del calendario per creare l'evento già con quella data.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">🏷️</span>
+        <span class="f-txt">
+          <span class="f-title">Categorie e colori</span>
+          <span class="f-sub">Ogni tipo di evento ha il suo colore, anche su Google Calendar.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Scegliendo la categoria assegni automaticamente un colore all'evento (in app e su Google
+          Calendar). Tra le categorie disponibili: Esercitazione, Corso di Formazione, Assemblea,
+          Evento Istituzionale, Attività Scuole, Servizio ASA, Emergenza, Servizio antincendio,
+          Servizio Safety &amp; Security e
+          <b>Servizio antincendio + Servizio Safety &amp; Security</b> <span class="tagbadge">novità</span>.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">✏️</span>
+        <span class="f-txt">
+          <span class="f-title">Modificare o eliminare un evento</span>
+          <span class="f-sub">I partecipanti con email vengono avvisati automaticamente.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Dalla scheda evento usi <b>✏️ Modifica</b> o <b>🗑 Elimina</b>. Chi si è iscritto
+          lasciando l'email riceve automaticamente una <b>notifica</b> della modifica o della
+          cancellazione.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">👥</span>
+        <span class="f-txt">
+          <span class="f-title">Visualizzare le risposte</span>
+          <span class="f-sub">Chi partecipa e chi no, con contatore.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Il pulsante <b>👥 Visualizza risposte</b> apre la tabella <b>Cognome · Nome · Risposta</b>,
+          ordinata per cognome, con l'indicazione di chi <b>partecipa</b> e chi <b>non partecipa</b>.
+          Nella scheda evento c'è anche un contatore riepilogativo.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">📋</span>
+        <span class="f-txt">
+          <span class="f-title">Copiare i partecipanti</span>
+          <span class="f-sub">Copia i nominativi dei soli partecipanti, pronti da incollare.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Nella finestra delle risposte, <b>📋 Copia partecipanti</b> copia negli appunti
+          <b>Cognome e Nome</b> dei soli partecipanti, uno per riga — pronti da incollare, per
+          esempio in un Google Keep. <span class="tagbadge">novità</span></p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">📊</span>
+        <span class="f-txt">
+          <span class="f-title">Scaricare le adesioni in CSV</span>
+          <span class="f-sub">Un foglio con tutte le risposte, da aprire in Excel o Fogli.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Con <b>📊 Scarica adesioni CSV</b> ottieni un file con tutte le adesioni dell'evento
+          (partecipazioni e assenze incluse), pronto da aprire in Excel o Google Fogli.</p>
+      </div>
+    </details>
+
+    <details class="feature" data-role="admin">
+      <summary>
+        <span class="f-emoji" aria-hidden="true">🔄</span>
+        <span class="f-txt">
+          <span class="f-title">Sincronizzazione con Google Calendar</span>
+          <span class="f-sub">Gli eventi finiscono sul calendario ufficiale, con i colori giusti.</span>
+        </span>
+        <span class="f-caret" aria-hidden="true">▸</span>
+      </summary>
+      <div class="f-body">
+        <p>Ogni evento creato o modificato viene <b>sincronizzato automaticamente</b> sul Google
+          Calendar della Protezione Civile, con il colore della sua categoria.</p>
+      </div>
+    </details>
+
+    <p class="no-results" id="no-results">
+      <strong>Nessuna funzione trovata</strong>
+      Prova con un'altra parola, oppure cancella la ricerca per rivedere tutta la guida.
+    </p>
+
+    <!-- ============ NOVITÀ / CHANGELOG ============ -->
+    <div class="group-head changelog" id="novita">
+      <div class="gh-icon" aria-hidden="true">✨</div>
+      <div>
+        <h2>Cosa c'è di nuovo</h2>
+        <p>Cronologia delle versioni. Dalla v22.0.0 usiamo lo standard <em>Semantic Versioning</em>.</p>
+      </div>
+    </div>
+
+    <div class="timeline">
+      <div class="rel current">
+        <div class="rel-head"><span class="rel-ver">v22.0.0</span><span class="rel-date">luglio 2026 · versione attuale</span></div>
+        <ul>
+          <li>Scadenza iscrizioni precompilata a 2 giorni prima della fine evento (modificabile)</li>
+          <li>Nuova categoria “Servizio antincendio + Servizio Safety &amp; Security”</li>
+          <li>Tasto “Copia partecipanti” nell'elenco risposte</li>
+          <li>Sovrascrittura della scelta in caso di doppia iscrizione</li>
+          <li>Accesso amministratore: password una sola volta per dispositivo</li>
+          <li>“Visualizza risposte” con contatore partecipanti/assenti</li>
+        </ul>
+      </div>
+      <div class="rel">
+        <div class="rel-head"><span class="rel-ver">v21</span><span class="rel-date">giugno 2026</span></div>
+        <ul><li>Correzione della formattazione di date e giorni nel registro adesioni</li></ul>
+      </div>
+      <div class="rel">
+        <div class="rel-head"><span class="rel-ver">v20</span><span class="rel-date">giugno 2026</span></div>
+        <ul><li>Doppia scelta sulla card evento: “Partecipo” e “Non partecipo”</li></ul>
+      </div>
+      <div class="rel">
+        <div class="rel-head"><span class="rel-ver">v19</span><span class="rel-date">maggio 2026</span></div>
+        <ul>
+          <li>13 categorie con colori e legenda a pallini</li>
+          <li>Accesso amministratore protetto da password</li>
+          <li>Link stabili su GitHub Pages</li>
+        </ul>
+      </div>
+      <div class="rel">
+        <div class="rel-head"><span class="rel-ver">precedenti</span><span class="rel-date">maggio 2026</span></div>
+        <ul>
+          <li>Privacy: l'elenco aderenti non è più visibile ai volontari</li>
+          <li>Campo scadenza semplificato (solo data)</li>
+          <li>Tracciamento della durata dell'evento in ore</li>
+        </ul>
+      </div>
+    </div>
+  </main>
+
+  <footer>
+    <div class="tl">Made with&nbsp;🟡🔵&nbsp;near the Po River</div>
+    <div>Protezione Civile ODV — Occhiobello e Stienta · Provincia di Rovigo</div>
+    <a href="https://protezione-civile-occhiobello-stienta.github.io/calendario/">← Torna al calendario</a>
+  </footer>
+
+  <script>
+    (function () {
+      var search  = document.getElementById('search');
+      var clear   = document.getElementById('search-clear');
+      var count   = document.getElementById('result-count');
+      var noRes   = document.getElementById('no-results');
+      var chips   = Array.prototype.slice.call(document.querySelectorAll('.chip'));
+      var features = Array.prototype.slice.call(document.querySelectorAll('.feature'));
+      var groups  = { volontari: document.getElementById('volontari'),
+                      admin:     document.getElementById('amministratori') };
+      var activeFilter = 'all';
+
+      // Salva il testo originale di ogni titolo per poter evidenziare/ripristinare
+      features.forEach(function (f) {
+        var t = f.querySelector('.f-title');
+        f._titleText = t.textContent;
+        f._haystack = f.textContent.toLowerCase();
+      });
+
+      function normalize(s) { return s.toLowerCase().trim(); }
+
+      function highlight(feature, q) {
+        var t = feature.querySelector('.f-title');
+        if (!q) { t.textContent = feature._titleText; return; }
+        var txt = feature._titleText;
+        var i = txt.toLowerCase().indexOf(q);
+        if (i < 0) { t.textContent = txt; return; }
+        t.textContent = '';
+        t.appendChild(document.createTextNode(txt.slice(0, i)));
+        var m = document.createElement('mark');
+        m.textContent = txt.slice(i, i + q.length);
+        t.appendChild(m);
+        t.appendChild(document.createTextNode(txt.slice(i + q.length)));
+      }
+
+      function apply() {
+        var q = normalize(search.value);
+        clear.style.display = q ? 'block' : 'none';
+        var shown = 0;
+
+        features.forEach(function (f) {
+          var matchRole = activeFilter === 'all' || f.getAttribute('data-role') === activeFilter;
+          var matchText = !q || f._haystack.indexOf(q) !== -1;
+          var visible = matchRole && matchText;
+          f.style.display = visible ? '' : 'none';
+          highlight(f, q);
+          // Apre automaticamente le schede che corrispondono alla ricerca
+          if (q && visible) f.open = true;
+          else if (!q) f.open = false;
+          if (visible) shown++;
+        });
+
+        // Nasconde l'intestazione di un gruppo se non ha risultati visibili
+        Object.keys(groups).forEach(function (role) {
+          var has = features.some(function (f) {
+            return f.getAttribute('data-role') === role && f.style.display !== 'none';
+          });
+          if (groups[role]) groups[role].style.display = has ? '' : 'none';
+        });
+
+        noRes.style.display = shown === 0 ? 'block' : 'none';
+
+        if (q || activeFilter !== 'all') {
+          count.innerHTML = '<b>' + shown + '</b> funzion' + (shown === 1 ? 'e' : 'i') +
+                            (q ? ' per “' + search.value.trim() + '”' : '');
+        } else {
+          count.textContent = '';
+        }
+      }
+
+      search.addEventListener('input', apply);
+      clear.addEventListener('click', function () { search.value = ''; search.focus(); apply(); });
+      chips.forEach(function (c) {
+        c.addEventListener('click', function () {
+          activeFilter = c.getAttribute('data-filter');
+          chips.forEach(function (x) { x.setAttribute('aria-pressed', x === c ? 'true' : 'false'); });
+          apply();
+        });
+      });
+
+      apply();
+    })();
+  </script>
 </body>
 </html>
