@@ -9,6 +9,8 @@ reindirizzato automaticamente al calendario vero, che si trova su Google.
 | **Volontari** (sola lettura) | `https://protezione-civile-occhiobello-stienta.github.io/calendario/` | `index.html` |
 | **Amministratore** (gestione eventi) | `https://protezione-civile-occhiobello-stienta.github.io/calendario/admin/` | `admin/index.html` |
 
+📋 **Stato sviluppi / cronologia versioni:** `https://protezione-civile-occhiobello-stienta.github.io/calendario/docs/` (pagina `docs/index.html`) — da aggiornare ad ogni deploy con le nuove funzioni e il nuovo numero di versione.
+
 Il link admin apre una schermata che chiede la **password**: l'indirizzo NON
 contiene nessuna password, quindi è sicuro salvarlo nei preferiti o condividerlo
 con chi deve gestire il calendario.
